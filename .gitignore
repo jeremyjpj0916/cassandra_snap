@@ -27,6 +27,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+vencas
 
 docs/_build
 *~

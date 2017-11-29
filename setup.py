@@ -16,7 +16,7 @@ setup(
     version=__version__,
     author=__maintainer__,
     author_email=__email__,
-    url='http://github.com/tbarbugli/cassandra_snapshotter',
+    url='http://github.com/gamunu/cassandra_snapshotter',
     description='Cassandra snapshotter is a tool to backup cassandra to Amazon S3.',
     packages=find_packages(),
     zip_safe=False,
