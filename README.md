@@ -46,6 +46,10 @@ cassandra-snapshotter --s3-bucket-name=Z \
                       backup \
                       --hosts=h1,h2,h3,h4 \
                       --user=cassandra # optional
+                      --nodetool_user=cassandra # optional
+                      --nodetool_pass=cassandra # optional
+                      --nodetool_port=1042 # optional
+                      --nodetool_password_file=./passwdfile # optional
 ```
 
 
