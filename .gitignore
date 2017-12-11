@@ -27,10 +27,11 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-vencas
+venv
 
 docs/_build
 *~
 
 # vim
 *.sw*
+.vscode

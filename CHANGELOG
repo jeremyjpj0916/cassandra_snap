@@ -1,6 +1,9 @@
 UPCOMING
  * add support for cn-north-1 region
 
+1.2.0
+ * add support for restore backups from S3
+
 1.1.0
  * add support for password authentication 
 
