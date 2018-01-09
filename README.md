@@ -6,7 +6,9 @@ A tool to backup cassandra nodes using snapshots and incremental backups on S3
 The scope of this project is to make it easier to backup a cluster to S3 and to combine
 snapshots and incremental backups.
 
-[![Build Status](https://travis-ci.org/tbarbugli/cassandra_snapshotter.svg?branch=master)](https://travis-ci.org/tbarbugli/cassandra_snapshotter) 
+[![Build Status](https://travis-ci.org/gamunu/cassandra_snapshotter.svg?branch=master)](https://travis-ci.org/gamunu/cassandra_snapshotter) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/maintainability)](https://codeclimate.com/github/gamunu/cassandra_snapshotter/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/test_coverage)](https://codeclimate.com/github/gamunu/cassandra_snapshotter/test_coverage)
 
 How to install
 --------------
@@ -248,5 +250,3 @@ You can find it in the `ring` file in the snapshot base path, for instance:
 ```
 /test-cassandra-snapshots/cassandrasnapshots/20160614202644/ring
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tbarbugli/cassandra_snapshotter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
