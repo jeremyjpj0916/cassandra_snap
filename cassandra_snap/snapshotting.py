@@ -223,7 +223,8 @@ class RestoreWorker(object):
 
         try:
             if filename.endswith('.lzo'):
-                uncompressed_key_full_path = re.sub('\.lzo$', '', key_full_path)
+                uncompressed_key_full_path = re.sub(
+                    '\.lzo$', '', key_full_path)
                 logging.info("Decompressing %s..." % key_full_path)
                 lzop_pipe = decompression_pipe(uncompressed_key_full_path)
                 key.open_read()
@@ -233,7 +234,8 @@ class RestoreWorker(object):
                 out, err = lzop_pipe.communicate()
                 errcode = lzop_pipe.returncode
                 if errcode != 0:
-                    logging.error("lzop Out: %s\nError:%s\nExit Code %d: " % (out, err, errcode))
+                    logging.error(
+                        "lzop Out: %s\nError:%s\nExit Code %d: " % (out, err, errcode))
             else:
                 logging.info("Downloading %s..." % key_full_path)
                 key.get_contents_to_filename(key_full_path)
@@ -321,7 +323,8 @@ class BackupWorker(object):
         return env.host_string
 
     def upload_node_backups(self, snapshot, incremental_backups):
-        prefix = os.path.join(snapshot.base_path, self.get_current_node_hostname())
+        prefix = os.path.join(snapshot.base_path,
+                              self.get_current_node_hostname())
 
         manifest_path = '/tmp/backupmanifest'
         manifest_command = "cassandra-snapshotter-agent " \

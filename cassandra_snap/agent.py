@@ -19,8 +19,8 @@ from multiprocessing.dummy import Pool
 from cassandra_snap import logging_helper
 from cassandra_snap.timeout import timeout
 from cassandra_snap.utils import (add_s3_arguments, base_parser,
-                                         map_wrap, get_s3_connection_host,
-                                         check_lzop, check_pv, compressed_pipe)
+                                  map_wrap, get_s3_connection_host,
+                                  check_lzop, check_pv, compressed_pipe)
 
 DEFAULT_CONCURRENCY = max(multiprocessing.cpu_count() - 1, 1)
 BUFFER_SIZE = 64  # Default bufsize is 64M
@@ -29,7 +29,7 @@ MAX_RETRY_COUNT = 4
 SLEEP_TIME = 2
 SLEEP_MULTIPLIER = 3
 UPLOAD_TIMEOUT = 600
-DEFAULT_REDUCED_REDUNDANCY=False
+DEFAULT_REDUCED_REDUNDANCY = False
 
 logging_helper.configure(
     format='%(name)-12s %(levelname)-8s %(message)s')
@@ -70,25 +70,31 @@ def upload_file(bucket, source, destination, s3_ssenc, bufsize, reduced_redundan
             if mp is None:
                 # Initiate the multi-part upload.
                 try:
-                    mp = bucket.initiate_multipart_upload(destination, encrypt_key=s3_ssenc, reduced_redundancy=reduced_redundancy)
-                    logger.info("Initialized multipart upload for file {!s} to {!s}".format(source, destination))
+                    mp = bucket.initiate_multipart_upload(
+                        destination, encrypt_key=s3_ssenc, reduced_redundancy=reduced_redundancy)
+                    logger.info("Initialized multipart upload for file {!s} to {!s}".format(
+                        source, destination))
                 except Exception as exc:
-                    logger.error("Error while initializing multipart upload for file {!s} to {!s}".format(source, destination))
+                    logger.error("Error while initializing multipart upload for file {!s} to {!s}".format(
+                        source, destination))
                     logger.error(exc.message)
                     raise
 
             try:
                 for i, chunk in enumerate(compressed_pipe(source, bufsize, rate_limit, quiet)):
-                    mp.upload_part_from_file(chunk, i + 1, cb=s3_progress_update_callback)
+                    mp.upload_part_from_file(
+                        chunk, i + 1, cb=s3_progress_update_callback)
             except Exception as exc:
-                logger.error("Error uploading file {!s} to {!s}".format(source, destination))
+                logger.error("Error uploading file {!s} to {!s}".format(
+                    source, destination))
                 logger.error(exc.message)
                 raise
 
             try:
                 mp.complete_upload()
             except Exception as exc:
-                logger.error("Error completing multipart file upload for file {!s} to {!s}".format(source, destination))
+                logger.error("Error completing multipart file upload for file {!s} to {!s}".format(
+                    source, destination))
                 logger.error(exc.message)
                 # The multi-part object may be in a bad state.  Extract an error
                 # message if we can, then discard it.
@@ -106,7 +112,8 @@ def upload_file(bucket, source, destination, s3_ssenc, bufsize, reduced_redundan
             # Failure anywhere reaches here.
             retry_count = retry_count + 1
             if retry_count > MAX_RETRY_COUNT:
-                logger.error("Retried too many times uploading file {!s}".format(source))
+                logger.error(
+                    "Retried too many times uploading file {!s}".format(source))
                 # Abort the multi-part upload if it was ever initiated.
                 if mp is not None:
                     cancel_upload(bucket, mp, destination)
@@ -115,7 +122,8 @@ def upload_file(bucket, source, destination, s3_ssenc, bufsize, reduced_redundan
                 logger.info("Sleeping before retry")
                 time.sleep(sleep_time)
                 sleep_time = sleep_time * SLEEP_MULTIPLIER
-                logger.info("Retrying {}/{}".format(retry_count, MAX_RETRY_COUNT))
+                logger.info(
+                    "Retrying {}/{}".format(retry_count, MAX_RETRY_COUNT))
                 # Go round again.
 
 
