@@ -100,13 +100,13 @@ def configure(*args, **kwargs):
 def get_log_destinations():
     """Parse env string"""
     # if env var is not set default to stderr + syslog
-    env = os.getenv('CASSANDRA_SNAPSHOTTER_LOG_DESTINATION', 'stderr,syslog')
+    env = os.getenv('CASSANDRA_SNAP_LOG_DESTINATION', 'stderr,syslog')
     return env.split(",")
 
 
 def get_syslog_facility():
     """Get syslog facility from ENV var"""
-    facil = os.getenv('CASSANDRA_SNAPSHOTTER_SYSLOG_FACILITY', 'user')
+    facil = os.getenv('CASSANDRA_SNAP_SYSLOG_FACILITY', 'user')
 
     valid_facility = True
     try:
@@ -119,7 +119,7 @@ def get_syslog_facility():
 
 
 def set_level(level):
-    """Adjust the logging level of CASSANDRA_SNAPSHOTTER"""
+    """Adjust the logging level of CASSANDRA_SNAP"""
     for handler in HANDLERS:
         handler.setLevel(level)
 

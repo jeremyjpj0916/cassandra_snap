@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
-from cassandra_snapshotter import __version__, __maintainer__, __email__
+from cassandra_snap import __version__, __maintainer__, __email__
 
 
 install_requires = [
@@ -12,20 +12,20 @@ install_requires = [
 ]
 
 setup(
-    name='cassandra_snapshotter',
+    name='cassandra_snap',
     version=__version__,
     author=__maintainer__,
     author_email=__email__,
-    url='http://github.com/gamunu/cassandra_snapshotter',
-    description='Cassandra snapshotter is a tool to backup cassandra to Amazon S3.',
+    url='http://github.com/gamunu/cassandra_snap',
+    description='Cassandra snap is a tool to backup cassandra to Amazon S3.',
     packages=find_packages(),
     zip_safe=False,
     install_requires=install_requires,
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'cassandra-snapshotter = cassandra_snapshotter.main:main',
-            'cassandra-snapshotter-agent = cassandra_snapshotter.agent:main'
+            'cassandra-snapshotter = cassandra_snap.main:main',
+            'cassandra-snapshotter-agent = cassandra_snap.agent:main'
         ]
     },
     classifiers=[

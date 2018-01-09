@@ -1,13 +1,14 @@
 language: python
 python:
   - 2.7
+  - 3.6
 notifications:
   email:
-    - gamunu.balagalla@outlook.com
+    - gamunu.balagalla@gmail.com
 install:
   - pip install pep8
   - python setup.py install
 env:
   - BOTO_CONFIG=/tmp/nowhere
 script:
-  - "pep8 --ignore=E501,E225,W293,E731 cassandra_snapshotter"
+  - "pep8 --ignore=E501,E225,W293,E731 cassandra_snap"

@@ -16,7 +16,7 @@ from datetime import datetime
 from fabric.api import (env, execute, hide, run, sudo)
 from fabric.context_managers import settings
 from multiprocessing.dummy import Pool
-from cassandra_snapshotter.utils import check_lzop, decompression_pipe
+from cassandra_snap.utils import check_lzop, decompression_pipe
 
 
 class Snapshot(object):

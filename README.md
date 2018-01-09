@@ -1,4 +1,4 @@
-cassandra_snapshotter
+cassandra_snap
 ======================
 
 A tool to backup cassandra nodes using snapshots and incremental backups on S3
@@ -6,9 +6,9 @@ A tool to backup cassandra nodes using snapshots and incremental backups on S3
 The scope of this project is to make it easier to backup a cluster to S3 and to combine
 snapshots and incremental backups.
 
-[![Build Status](https://travis-ci.org/gamunu/cassandra_snapshotter.svg?branch=master)](https://travis-ci.org/gamunu/cassandra_snapshotter) 
-[![Maintainability](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/maintainability)](https://codeclimate.com/github/gamunu/cassandra_snapshotter/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/test_coverage)](https://codeclimate.com/github/gamunu/cassandra_snapshotter/test_coverage)
+[![Build Status](https://travis-ci.org/gamunu/cassandra_snap.svg?branch=master)](https://travis-ci.org/gamunu/cassandra_snap) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/maintainability)](https://codeclimate.com/github/gamunu/cassandra_snap/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/test_coverage)](https://codeclimate.com/github/gamunu/cassandra_snap/test_coverage)
 
 How to install
 --------------
@@ -16,7 +16,7 @@ How to install
 Both the machine that runs the backup and the Cassandra nodes need to install the tool
 
 ``` bash
-pip install cassandra_snapshotter
+pip install cassandra_snap
 ```
 
 Nodes in the cluster also need to have lzop installed so that backups on S3 can be archived compressed
@@ -81,7 +81,7 @@ cassandra-snapshotter --s3-bucket-name=Z \
 
 ### How it works
 
-cassandra_snapshotter connects to your cassandra nodes using ssh and uses nodetool to generate
+cassandra_snap connects to your cassandra nodes using ssh and uses nodetool to generate
 the backups for keyspaces / table you want to backup.
 
 Backups are stored on S3 using this convention:
@@ -123,7 +123,7 @@ __NOTE:__ Incremental backups are not enabled by default on cassandra.
 
 ### CREATE NEW SNAPSHOT
 
-If you dont want to use incremental backups, or if for some reason you want to create a new snapshot for your data, run the cassandra_snapshotter with the `--new-snapshot` argument.
+If you dont want to use incremental backups, or if for some reason you want to create a new snapshot for your data, run the cassandra_snap with the `--new-snapshot` argument.
 
 
 ### Data retention / Cleanup old snapshots
@@ -202,7 +202,7 @@ Also prior to run the command ensure that the filesystem can host the data (enou
 Example:
 
 Let's say we have a filesystem mounted on `/cassandra`.
-We want to download files on `/cassandra/restore/` (no need to create the `restore` directory, `cassandra_snapshotter` will create it).
+We want to download files on `/cassandra/restore/` (no need to create the `restore` directory, `cassandra_snap` will create it).
 
 The following command will restore from `10.0.2.68` on the local server into `/cassandra/restore/`:
 
@@ -243,7 +243,7 @@ Here are the DataStax procedures to follow when using a local restore:
 
 ### Ring information
 
-In case you need, cassandra_snapshotter stores the ring token description every time a backup is done.
+In case you need, cassandra_snap stores the ring token description every time a backup is done.
 
 You can find it in the `ring` file in the snapshot base path, for instance:
 
