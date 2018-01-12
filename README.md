@@ -7,8 +7,8 @@ The scope of this project is to make it easier to backup a cluster to S3 and to 
 snapshots and incremental backups.
 
 [![Build Status](https://travis-ci.org/gamunu/cassandra_snap.svg?branch=master)](https://travis-ci.org/gamunu/cassandra_snap) 
-[![Maintainability](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/maintainability)](https://codeclimate.com/github/gamunu/cassandra_snap/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/25e20dd03462119b7ec8/test_coverage)](https://codeclimate.com/github/gamunu/cassandra_snap/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1e2875902efd7f6da821/maintainability)](https://codeclimate.com/github/gamunu/cassandra_snap/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1e2875902efd7f6da821/test_coverage)](https://codeclimate.com/github/gamunu/cassandra_snap/test_coverage)
 
 How to install
 --------------
