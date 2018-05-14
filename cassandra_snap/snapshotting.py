@@ -100,10 +100,11 @@ class RestoreWorker(object):
                  local_restore, s3_connection_host):
         self.aws_secret_access_key = aws_secret_access_key
         self.aws_access_key_id = aws_access_key_id
+        self.s3_connection_host = s3_connection_host
         self.s3connection = S3Connection(
             aws_access_key_id=self.aws_access_key_id,
             aws_secret_access_key=self.aws_secret_access_key,
-            host=s3_connection_host)
+            host=self.s3_connection_host)
         self.snapshot = snapshot
         self.keyspace_table_matcher = None
         self.cassandra_bin_dir = cassandra_bin_dir
